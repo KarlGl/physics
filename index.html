@@ -1,7 +1,15 @@
 <html>
 <head>
-<script data-main="main" src="node_modules/requirejs/require.js"></script>
 </head>
 <body>
 <canvas id="canvas"></canvas>
+
+<script type="text/javascript">
+makeContext = function() {return new webkitAudioContext();}
+</script>
+<script type="text/javascript" src="lib/audio.js"></script>
+<script type="text/javascript" src="lib/context.js"></script>
+<script type="text/javascript" src="lib/image_parser.js"></script>
+<script type="text/javascript" src="lib/wave.js"></script>
+<!-- <script type="text/javascript" src="node_modules/requirejs/require.js"></script> -->
 </body></html>
