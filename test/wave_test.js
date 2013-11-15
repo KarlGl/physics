@@ -31,3 +31,13 @@ exports['kill'] = {
     test.done();
   }
 };
+
+exports['setF'] = {
+  'setF': function(test) {
+    var stub = {};
+    stub.frequency = {};
+    me.setF(stub, 100);
+    test.equal(stub.frequency.value, 100);
+    test.done();
+  }
+};
