@@ -6,7 +6,7 @@ exports['getFreqs'] = {
   'empty': function(test) {
     test.deepEqual(ipar.getFreqs(0, 0, function() {
       return {
-        data: [255, 0, 0, 0]
+        val: [123]
       };
     }), []);
     test.done();
@@ -17,9 +17,7 @@ exports['getFreqs'] = {
       return 'foo';
     };
     test.deepEqual(ipar.getFreqs(2, 0, function() {
-      return {
-        data: [255, 0, 0, 0]
-      };
+      return {};
     }), ['foo', 'foo']);
     ipar.getFreqsForX = _getFreqsForX;
     test.done();
@@ -30,7 +28,7 @@ exports['getFreqsForX'] = {
   '1': function(test) {
     test.deepEqual(ipar.getFreqsForX(0, 1, function() {
       return {
-        data: [255, 0, 0, 0]
+        val: [255, 0, 0, 0]
       };
     }), [
       [255, 0, 0, 0]
