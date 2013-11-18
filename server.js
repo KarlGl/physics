@@ -29,6 +29,8 @@ http.createServer(function(req, res) {
 
     var uri = url.parse(req.url).pathname;
     console.log("uri " + uri);
+    if (uri === "/")
+      uri = "/index.html";
     var filename = path.join(process.cwd(), unescape(uri));
     var stats;
 
