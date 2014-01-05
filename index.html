@@ -6,15 +6,92 @@
   <script type="text/javascript" src="node_modules/requirejs/require.js"></script>
 
   <link rel="stylesheet" href="./node_modules/grunt-mocha-test/node_modules/mocha/mocha.css" />
+  <link rel="stylesheet" href="./app.css" />
   <script type="text/javascript">
   require([
     "./bower_components/chai/chai.js",
+    './vendor/physicsjs-full-0.5.3',
     'bower_components/jquery/jquery.min.js',
     'lib/app.js',
-    './node_modules/grunt-mocha-test/node_modules/mocha/mocha.js',
-  ], function(chai) {
+    './node_modules/grunt-mocha-test/node_modules/mocha/mocha.js'
+  ], function(chai, phy) {
+    window.Physics = phy;
     window.chai = chai;
     mocha.setup('bdd')
+
+    Physics({
+      // set the timestep
+      timestep: 1000.0 / 160,
+      // maximum number of iterations per step
+      maxIPF: 16,
+      // set the integrator (may also be set with world.add())
+      integrator: 'verlet'
+    }, function(world) {
+      // use "world"
+
+      var viewWidth = 500;
+      var viewHeight = 300;
+
+      var renderer = Physics.renderer('canvas', {
+        el: 'viewport',
+        width: viewWidth,
+        height: viewHeight,
+        meta: true, // don't display meta data
+        styles: {
+          // set colors for the circle bodies
+          'circle': {
+            strokeStyle: 'hsla(60, 37%, 17%, 1)',
+            lineWidth: 1,
+            fillStyle: 'hsla(60, 37%, 57%, 0.8)',
+            angleIndicator: 'hsla(60, 37%, 17%, 0.4)'
+          }
+        }
+      });
+
+      // add the renderer
+      world.add(renderer);
+      // render on each step
+      world.subscribe('step', function() {
+        world.render();
+      });
+
+      // bounds of the window
+      var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
+
+      // constrain objects to these bounds
+      world.add(Physics.behavior('edge-collision-detection', {
+        aabb: viewportBounds,
+        restitution: 0.5,
+        cof: 0
+      }));
+
+      // add a circle
+      world.add(
+        Physics.body('circle', {
+          x: viewWidth / 2, // x-coordinate
+          y: viewHeight, // y-coordinate
+          vx: 0, // velocity in x-direction
+          vy: -0.1, // velocity in y-direction
+          radius: 20
+        })
+      );
+
+      // ensure objects bounce when edge collision is detected
+      world.add(Physics.behavior('body-impulse-response'));
+
+      // add some gravity
+      world.add(Physics.behavior('constant-acceleration'));
+
+      // subscribe to ticker to advance the simulation
+      Physics.util.ticker.subscribe(function(time, dt) {
+
+        world.step(time);
+      });
+
+      // start the ticker
+      Physics.util.ticker.start();
+    });
+
 
     require([
       './test/core_test.js',
