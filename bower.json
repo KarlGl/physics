@@ -1,0 +1,18 @@
+{
+  "name": "physics",
+  "version": "0.0.0",
+  "homepage": "https://github.com/KarlGl/physics",
+  "authors": [
+    "Karl Glaser <kg@papercloud.com.au>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}

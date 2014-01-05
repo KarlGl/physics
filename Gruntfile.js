@@ -27,8 +27,13 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       },
     },
-    nodeunit: {
-      files: ['test/**/*_test.js']
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/**/*.js']
+      }
     },
     jshint: {
       options: {
@@ -55,15 +60,13 @@ module.exports = function(grunt) {
       lib: {
         files: '<%= jshint.lib.src %>',
         tasks: [
-          // 'jshint:lib',
-          'nodeunit'
+          'mochaTest'
         ]
       },
       test: {
         files: '<%= jshint.test.src %>',
         tasks: [
-          // 'jshint:test',
-          'nodeunit'
+          'mochaTest'
         ]
       },
     },
@@ -72,11 +75,11 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'mochaTest', 'concat', 'uglify']);
 
 };

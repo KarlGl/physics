@@ -1,39 +1,29 @@
 {
-  "name": "audio",
+  "name": "physics",
   "description": "The best project ever.",
   "version": "0.1.0",
-  "homepage": "https://a.com",
   "author": {
     "name": "Karl Glaser",
     "email": "kg@papercloud.com.au"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kg/audio.git"
+    "url": "git://github.com/karlgl/physics.git"
   },
-  "bugs": {
-    "url": "https://github.com/kg/audio/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/kg/audio/blob/master/LICENSE-MIT"
-    }
-  ],
-  "main": "lib/gol",
+  "main": "lib/app",
   "engines": {
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "mocha"
   },
   "devDependencies": {
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "~0.4.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-mocha-test": "~0.8.1"
   },
   "keywords": [],
   "dependencies": {
