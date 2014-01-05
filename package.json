@@ -2,7 +2,7 @@
   "name": "audio",
   "description": "The best project ever.",
   "version": "0.1.0",
-  "homepage": "https://github.com/kg/audio",
+  "homepage": "https://a.com",
   "author": {
     "name": "Karl Glaser",
     "email": "kg@papercloud.com.au"
@@ -20,7 +20,7 @@
       "url": "https://github.com/kg/audio/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/audio",
+  "main": "lib/gol",
   "engines": {
     "node": ">= 0.6.0"
   },
@@ -35,5 +35,8 @@
     "grunt-contrib-watch": "~0.4.0",
     "grunt": "~0.4.1"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "lodash": "~2.4.1"
+  }
 }

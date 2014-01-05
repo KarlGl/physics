@@ -1,14 +1,15 @@
-<script type="text/javascript">
-makeContext = function() {return new webkitAudioContext();}
-</script>
-<script type="text/javascript" src="lib/context.js"></script>
-<script type="text/javascript" src="lib/image_parser.js"></script>
-<script type="text/javascript" src="lib/image_creator.js"></script>
-<script type="text/javascript" src="lib/sound_creator.js"></script>
-<script type="text/javascript" src="lib/image_datum.js"></script>
-<script type="text/javascript" src="lib/wave.js"></script>
-<script type="text/javascript" src="lib/osc.js"></script>
-<script type="text/javascript" src="lib/god.js"></script>
-<!-- <script type="text/javascript" src="node_modules/requirejs/require.js"></script> -->
+<html>
 
-</body></html>
+<head></head>
+
+<body>
+  <script type="text/javascript" src="node_modules/requirejs/require.js"></script>
+  <script type="text/javascript">
+  require(['lib/app.js'], function(app) {
+    window.app = app;
+
+  })
+  </script>
+</body>
+
+</html>
