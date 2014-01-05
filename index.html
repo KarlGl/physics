@@ -4,12 +4,28 @@
 
 <body>
   <script type="text/javascript" src="node_modules/requirejs/require.js"></script>
-  <script type="text/javascript">
-  require(['lib/app.js'], function(app) {
-    window.app = app;
 
+  <link rel="stylesheet" href="./node_modules/grunt-mocha-test/node_modules/mocha/mocha.css" />
+  <script type="text/javascript">
+  require([
+    "./bower_components/chai/chai.js",
+    'bower_components/jquery/jquery.min.js',
+    'lib/app.js',
+    './node_modules/grunt-mocha-test/node_modules/mocha/mocha.js',
+  ], function(chai) {
+    window.chai = chai;
+    mocha.setup('bdd')
+
+    require([
+      './test/core_test.js',
+    ], function() {
+      var runner = mocha.run();
+
+    });
   })
   </script>
+
+  <div id="mocha"></div>
 </body>
 
 </html>
